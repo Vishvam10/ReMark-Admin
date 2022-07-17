@@ -7,11 +7,12 @@
                 <ion-icon name="close-outline" style="position: fixed; top: 6rem; right: 37%; color: #dc3545; font-size: 3rem"></ion-icon>
             </router-link> -->
             <div class="menu_options">
-                <h5 :class="{ selectedLink: active == 1 }" @click="showPage" data-tabno=1>Edit<br>Profile</h5>
+                <h5 :class="{ selectedLink: active == 1 }" @click="showPage" data-tabno=1 style="margin: 0rem 1rem 0rem 0rem;">Edit<br>Profile</h5>
                 <h5 :class="{ selectedLink: active == 2}" @click="showPage" data-tabno=2>Password<br>Reset</h5>
                 <h5 :class="{ selectedLink: active == 3}" @click="showPage" data-tabno=3 style="margin: 0rem -1rem 0rem 0rem;">User<br>Preferences</h5>
-                <h5 :class="{ selectedLink: active == 4}" @click="showPage" data-tabno=4>Usage<br>Statistics</h5>
-                <h5 :class="{ selectedLink: active == 5}" @click="showPage" data-tabno=5>Developer<br>Settings</h5>
+                <h5 :class="{ selectedLink: active == 4}" @click="showPage" data-tabno=4 style="margin: 0rem 1rem 0rem 0rem;">Usage<br>Statistics</h5>
+                <h5 :class="{ selectedLink: active == 5}" @click="showPage" data-tabno=5 style="margin: 0rem 1rem 0rem 0rem;">Register<br>Website</h5>
+                <h5 :class="{ selectedLink: active == 6}" @click="showPage" data-tabno=6>Developer<br>Settings</h5>
             </div>
             <div id="showMenu">
                 <template v-if="active == 1">
@@ -26,11 +27,14 @@
                 <template v-else-if="active == 4">
                     <UsageStatistics /> 
                 </template>
+                <template v-else-if="active == 5">
+                    <RegisterWebsite /> 
+                </template>
                 <template v-else>
                     <DeveloperSettings /> 
                 </template>
             </div>
-            <span style="position: relative; bottom: -7rem; left: 0rem; font-size: 1rem;">* If a field does not change, please reload the page</span>
+            <span v-if="active <= 5" style="position: relative; bottom: -7rem; left: 0rem; font-size: 1rem;">* If a field does not change, please reload the page</span>
         </div>
     </div>
 </template>
@@ -45,6 +49,7 @@ h5 {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    color: grey;
 }
 
 h5:hover {
@@ -63,7 +68,7 @@ h5:active {
 }
 
 .settings_container {
-    width: 90%;
+    width: 70%;
     height: 66rem;
     padding: 4rem;
     border-radius: 1rem;
@@ -75,7 +80,7 @@ h5:active {
     align-items: center;
 }
 .menu_options {
-    width: 12rem;
+    width: 16rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -86,8 +91,8 @@ h5:active {
     height: 57rem;
     border-radius: 1rem;
     box-shadow: rgba(75, 77, 80, 0.2) 0px 8px 24px;
-    background: white;
-    left: 10rem;
+    background: #111111;
+    left: 26rem;
     word-wrap: break-word;
     z-index: 10;
 }
@@ -98,7 +103,7 @@ h5:active {
 }
 
 .selectedLink {
-    color: #0d6efd;
+    color: white;
     font-weight: bold;
 }
 
@@ -119,6 +124,7 @@ import DeveloperSettings from "./../components/DeveloperSettings.vue"
 import PasswordReset from "./../components/PasswordReset.vue"
 import UserPreferences from "./../components/Preferences.vue"
 import UsageStatistics from "./../components/UsageStatistics.vue"
+import RegisterWebsite from "./../components/RegisterWebsite.vue"
 
 export default {
     name: "Settings",
@@ -127,7 +133,8 @@ export default {
         DeveloperSettings,
         PasswordReset,
         UserPreferences,
-        UsageStatistics
+        UsageStatistics,
+        RegisterWebsite
     },
     emits: ["switchTheme"],
     data() {

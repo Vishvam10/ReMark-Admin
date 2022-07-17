@@ -2,24 +2,35 @@
     <h3 class="mb-5" style="margin: 0rem 0rem 0rem -1rem;">Edit Profile</h3>
     <div class="input-group input-group-sm mb-3 d-flex flex-column justify-content-center">
         <form id="accountSettings">
-            <div class="row mb-3">
+            <div class="row mb-5">
                 <label for="username" class="mb-3" style="transform: translateX(-8px)">Username</label>
                 <input type="text" name="user_name" class="form-control form-control-lg" id="username" :value="username">
             </div>
-            <div class="row mb-3">
+            <div class="row mb-5">
                 <label for="email" class="mb-3" style="transform: translateX(-8px)">Email ID</label>
                 <input type="email" name="email_id" class="form-control form-control-lg" id="email" :value="email">
             </div>
-            <div class="row mb-3">
+            <div class="row mb-5">
                 <label for="bio" class="mb-3" style="transform: translateX(-8px)">Bio</label>
                 <input type="tel" name="bio_no" class="form-control form-control-lg" id="bio" :value="bio">
             </div>
-            <div class="row mb-3 mt-5">
+            <div class="row mb-5 mt-5">
                 <button class="form-control form-control-lg btn btn-primary" style="height: 4rem; width: 16rem;" @click="updateUserDetails">Save Changes</button>
             </div>
         </form>
     </div>
 </template>
+
+<style scoped>
+label {
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+button {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+</style>
 
 <script>
 export default {

@@ -2,28 +2,28 @@
     <h3 class="mb-5" style="margin: 0rem 0rem 0rem -1rem;">Preferences</h3>
     <div class="input-group input-group-sm mb-3 d-flex flex-column justify-content-center">
         <form id="userPreferences">
-            <h6 class="mb-2">Annotation Layout</h6>
+            <h5 class="mb-4">Annotation Layout</h5>
             <div class="preference_container">
                 <input class="form-check-input" type="radio" name="annotation_layout" value="hover_box">
                 <label class="form-check-label" style="transform: translateX(-4rem)">Hover Box</label>
                 <input class="form-check-input" type="radio" name="annotation_layout" value="sidebar" selected>
                 <label class="form-check-label" style="transform: translateX(-4rem)">Sidebar</label>
             </div>
-            <h6 class="mb-2">Export Format</h6>
+            <h5 class="mb-4 mt-4">Export Format</h5>
             <div class="preference_container">
                 <input class="form-check-input" type="radio" name="export_format" value="csv">
                 <label class="form-check-label" style="transform: translateX(-5rem)"> CSV</label>
                 <input class="form-check-input" type="radio" name="export_format" value="excel" selected>
                 <label class="form-check-label" style="transform: translateX(-5rem)"> Excel</label>
             </div>
-            <h6 class="mb-2 mt-3">Report Format</h6>
+            <h5 class="mb-4 mt-4">Report Format</h5>
             <div class="preference_container">
                 <input class="form-check-input" type="radio" name="report_format" value="html">
                 <label class="form-check-label" style="transform: translateX(-5rem)"> HTML</label>
                 <input class="form-check-input" type="radio" name="report_format" value="pdf" selected>
                 <label class="form-check-label" style="transform: translateX(-5rem)"> PDF</label>
             </div>
-            <!-- <h6 class="mb-2 mt-3">Chat Reminder</h6>
+            <!-- <h5 class="mb-2 mt-3">Chat Reminder</h5>
             <div class="preference_container">
                 <input class="form-check-input" type="radio" name="reminders" value="on" data-val="on" @click="reminderToggle" id="onReminder">
                 <label class="form-check-label" style="transform: translateX(-5rem)">On</label>
@@ -38,13 +38,13 @@
         </form>
         <div class="input-group input-group-sm mb-3 d-flex flex-column justify-content-center" style="margin: 0rem 0rem 0rem -1rem;">
             <form id="generalSettings">
-                <h6 class="mb-4" style="margin: 1rem 0rem 0rem 0rem;">Dark Mode ( Reload required ) </h6>
+                <h5 class="mb-4" style="margin: 1rem 0rem 0rem 0rem;">Dark Mode </h5>
                 <div class="row mb-4">
                     <div class="form-check form-switch">
-                        <input class="form-check-input mb-3" style="transform: translate(1.8rem, -0.4rem); height: 3rem; width: 6rem;" type="checkbox" id="themeSwitch" @change="themeSwitcher">
+                        <input class="form-check-input mb-3" style="transform: translate(4rem, -0.4rem); height: 3rem; width: 6rem;" type="checkbox" id="themeSwitch" @change="themeSwitcher">
                     </div>
                 </div>
-                <!-- <h6 class="mb-2">Color Scheme ( Reload required )  </h6>
+                <!-- <h5 class="mb-2">Color Scheme ( Reload required )  </h5>
                 <div class="row mb-3">
                     <div class="preference_container">
                         <input class="form-check-input" type="radio" name="color_palette" value="red">
@@ -56,7 +56,7 @@
                     </div>
                 </div> -->
                 <div class="row mb-3 mt-5">
-                    <button class="form-control form-control-lg btn btn-primary" style="height: 4rem" @click="updateUserPreferences">Update Preferences</button>
+                    <button class="form-control form-control-lg btn btn-primary" style="height: 4rem; width: 16rem;" @click="updateUserPreferences">Update Preferences</button>
                 </div>
             </form>
         </div>
@@ -64,9 +64,13 @@
 </template>
 
 <style scoped>
-h6 {
-    font-weight: bold;
+h5 {
+    font-weight: 400;
     margin: 0rem 0rem 0rem -1rem;
+}
+button {
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 .preference_container {
     display: flex;
