@@ -16,7 +16,7 @@
             </div>
             <div id="showMenu">
                 <template v-if="active == 1">
-                    <AccountSettings :username="user_data.username" :email="user_data.email_id" :phone="user_data.phone_no" />
+                    <AccountSettings :username="user_data.username" :email="user_data.email_id" :bio="user_data.bio" />
                 </template>
                 <template v-else-if="active == 2">
                     <PasswordReset />
@@ -31,7 +31,7 @@
                     <RegisterWebsite /> 
                 </template>
                 <template v-else>
-                    <DeveloperSettings /> 
+                    <DeveloperSettings :api_key="api_key" :websites="website_data"/> 
                 </template>
             </div>
             <span v-if="active <= 5" style="position: relative; bottom: -7rem; left: 0rem; font-size: 1rem;">* If a field does not change, please reload the page</span>
@@ -119,12 +119,12 @@ h5:active {
 </style>
 
 <script>
-import AccountSettings from "./../components/AccountSettings.vue"
-import DeveloperSettings from "./../components/DeveloperSettings.vue"
-import PasswordReset from "./../components/PasswordReset.vue"
-import UserPreferences from "./../components/Preferences.vue"
-import UsageStatistics from "./../components/UsageStatistics.vue"
-import RegisterWebsite from "./../components/RegisterWebsite.vue"
+import AccountSettings from "../components/AccountSettings.vue"
+import DeveloperSettings from "../components/DeveloperSettings.vue"
+import PasswordReset from "../components/PasswordReset.vue"
+import UserPreferences from "../components/Preferences.vue"
+import UsageStatistics from "../components/UsageStatistics.vue"
+import RegisterWebsite from "../components/RegisterWebsite.vue"
 
 export default {
     name: "Settings",
@@ -140,41 +140,83 @@ export default {
     data() {
         return {
             active : 1,
-            user_data : {}
+            user_data : {},
+            api_key : "",
+            website_data : -1
         }
     },
     methods : {
-        // getUserData() {
-        //     const BASE_API_URL = document.getElementById("base_api_url").textContent;
-        //     const user_id = localStorage.getItem("user_id");
-        //     const auth_token = localStorage.getItem("user_access_token");
-        //     const url = `${BASE_API_URL}/api/user/${user_id}`;
-        //     console.log(url);
-        //     fetch(url, {
-        //         method: "GET",
-        //         mode: "cors",
-        //         headers: {
-        //             'Access-Control-Allow-Origin': "*",
-        //             'Authorization': `Bearer ${auth_token}`,
-        //             'Accept' : "application/json"
-        //         }  
-        //     })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         this.user_data = data
-        //     })
-        //     .catch(err => console.log(err))
-        // },
+        getUserData() {
+            const BASE_API_URL = document.getElementById("base_api_url").textContent;
+            const user_id = localStorage.getItem("user_id");
+            const auth_token = localStorage.getItem("user_access_token");
+            const user_url = `${BASE_API_URL}/api/user/${user_id}`;
+            fetch(user_url, {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    'Access-Control-Allow-Origin': "*",
+                    'Authorization': `Bearer ${auth_token}`,
+                    'Accept' : "application/json"
+                }  
+            })
+            .then(res => res.json())
+            .then(data => {
+                this.user_data = data
+                localStorage.setItem("user_id", data.user_id)
+            })
+            .catch(err => console.log(err))
+            
+            const token_url = `${BASE_API_URL}/api/token/${user_id}`;
+            fetch(token_url, {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    'Access-Control-Allow-Origin': "*",
+                    'Authorization': `Bearer ${auth_token}`,
+                    'Accept' : "application/json"
+                }  
+            })
+            .then(res => res.json())
+            .then(data => {
+                this.api_key = data.data.api_key;
+                localStorage.setItem("admin_api_key", this.api_key)
+                console.log(data.data.api_key);
+            })
+            .catch(err => console.log(err))
+
+            this.getWebsiteData()
+        },
+        getWebsiteData() {
+            const BASE_API_URL = document.getElementById("base_api_url").textContent;
+            const user_id = localStorage.getItem("user_id");
+            const api_key = localStorage.getItem("admin_api_key");
+            const auth_token = localStorage.getItem("user_access_token");
+            const url = `${BASE_API_URL}/api/website/all/${user_id}`;
+            fetch(url, {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    'API_KEY' : `${api_key}`,
+                    'Access-Control-Allow-Origin': "*",
+                    'Authorization': `Bearer ${auth_token}`,
+                    'Accept' : "application/json"
+                }  
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                this.website_data = data
+            })
+            .catch(err => console.log(err))
+        },
         showPage(e) {
             e.preventDefault();
             e.stopPropagation();
             const v = e.target.dataset.tabno;
             this.active = v;
-            console.log("CLICKED", v);
         },
         switchTheme(data) {
-            console.log("DATA FROM SETTINGS PAGE : ", data);
             this.$emit("switchTheme", data);
         },
         updateUser(e) {
@@ -191,10 +233,10 @@ export default {
             // }
         }
     },
-    // created() {
-    //     setTimeout(() => {
-    //         this.getUserData();
-    //     }, 500)
-    // }
+    created() {
+        setTimeout(() => {
+            this.getUserData();
+        }, 200)
+    }
 }
 </script>

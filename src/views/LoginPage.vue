@@ -13,6 +13,10 @@
                         <label for="password" class="mb-3" style="transform: translateX(-8px)">Password</label>
                         <input type="password" name="password" class="form-control form-control-lg" id="password">
                     </div>
+                    <div class="row mb-3">
+                        <label for="authority" class="mb-3" style="transform: translateX(-8px)">Authority</label>
+                        <input type="authority" name="authority" class="form-control form-control-lg" id="authority" value="admin" readonly>
+                    </div>
                     <div class="row mb-3 mt-5">
                         <button name="submit" class="form-control form-control-lg btn btn-primary" style="height: 4rem" @click="loginUser">Login</button>
                     </div>
@@ -36,7 +40,7 @@ export default {
                 if(re.test(data["password"])) {
                     return "OK";
                 }
-                return "Invalid Password Format";
+                return "OK";
             }
             return "Empty Field Present"
         },
@@ -47,44 +51,42 @@ export default {
             for(var pair of formData.entries()){
                 data[pair[0]] = pair[1];
             }
-            console.log(data, JSON.stringify(data));
             const res = this.validateForm(data);
-            console.log(res);
-            // if(res == "OK") {
-            //     const BASE_API_URL = document.getElementById("base_api_url").textContent;
-            //     const url = `${BASE_API_URL}/api/login`;
-            //     fetch(url, {
-            //         method: 'POST',
-            //         headers: {
-            //             'Access-Control-Allow-Origin': '*',
-            //             'Accept': 'application/json',
-            //             'Content-Type': 'application/json'
-            //         },
-            //         body: JSON.stringify(data)
-            //     })
-            //     .then(res => res.json())
-            //     .then(data => {
-            //         console.log(data);
-            //         if(data["status"] == 200) {
-            //             localStorage.setItem("user_access_token", data["access_token"]);
-            //             localStorage.setItem("user_id", data["user_id"]);
-            //             localStorage.setItem("user_name", data["user_name"]);
-            //             this.$router.push({ name: 'dashboard' }) 
-            //         } else {
-            //             const markup =
-            //             `
-            //             <div id="error_message">
-            //                 <h3>${data["error_message"]}</h3>
-            //             </div>   
-            //             `;
-            //             document.getElementById("lm").insertAdjacentHTML("afterbegin", markup);
-            //             setTimeout(() => {
-            //                 document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-            //             }, 2000)
-            //         }
-            //     })
-            //     .catch(err => console.log(err))
-            // }
+            if(res == "OK") {
+                const BASE_API_URL = document.getElementById("base_api_url").textContent;
+                const url = `${BASE_API_URL}/api/login`;
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if(data["status"] == 200) {
+                        localStorage.setItem("user_access_token", data["access_token"]);
+                        localStorage.setItem("user_id", data["user_id"]);
+                        localStorage.setItem("user_name", data["user_name"]);
+                        this.$router.push({ name: 'adminDashboard' }) 
+                    } else {
+                        const markup =
+                        `
+                        <div id="error_message">
+                            <h5>${data["error_message"]}</h5>
+                        </div>   
+                        `;
+                        document.getElementById("lm").insertAdjacentHTML("afterbegin", markup);
+                        setTimeout(() => {
+                            document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
+                        }, 2000)
+                    }
+                })
+                .catch(err => console.log(err))
+            }
         }
     }
 }

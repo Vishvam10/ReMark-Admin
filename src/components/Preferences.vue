@@ -9,18 +9,18 @@
                 <input class="form-check-input" type="radio" name="annotation_layout" value="sidebar" selected>
                 <label class="form-check-label" style="transform: translateX(-4rem)">Sidebar</label>
             </div>
-            <h5 class="mb-4 mt-4">Export Format</h5>
+            <h5 class="mb-4 mt-4">Export Format (Under Development)</h5>
             <div class="preference_container">
-                <input class="form-check-input" type="radio" name="export_format" value="csv">
+                <input disabled class="form-check-input" type="radio" name="export_format" value="csv">
                 <label class="form-check-label" style="transform: translateX(-5rem)"> CSV</label>
-                <input class="form-check-input" type="radio" name="export_format" value="excel" selected>
+                <input disabled class="form-check-input" type="radio" name="export_format" value="excel" selected>
                 <label class="form-check-label" style="transform: translateX(-5rem)"> Excel</label>
             </div>
-            <h5 class="mb-4 mt-4">Report Format</h5>
+            <h5 class="mb-4 mt-4">Report Format (Under Development)</h5>
             <div class="preference_container">
-                <input class="form-check-input" type="radio" name="report_format" value="html">
+                <input disabled class="form-check-input" type="radio" name="report_format" value="html">
                 <label class="form-check-label" style="transform: translateX(-5rem)"> HTML</label>
-                <input class="form-check-input" type="radio" name="report_format" value="pdf" selected>
+                <input disabled class="form-check-input" type="radio" name="report_format" value="pdf" selected>
                 <label class="form-check-label" style="transform: translateX(-5rem)"> PDF</label>
             </div>
             <!-- <h5 class="mb-2 mt-3">Chat Reminder</h5>
@@ -183,10 +183,10 @@ export default {
         //     .catch(err => console.log(err))
         // }
     },
-    created() {
-        setTimeout(() => {
-            this.getUserPreferenceData()
-        }, 500)
-    }
+    // created() {
+    //     setTimeout(() => {
+    //         this.getUserPreferenceData()
+    //     }, 500)
+    // }
 }
 </script>

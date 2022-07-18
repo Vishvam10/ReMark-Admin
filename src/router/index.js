@@ -4,7 +4,7 @@ import HomePage from '../views/HomePage.vue'
 import LoginPage from "./../views/LoginPage";
 import SignupPage from "./../views/SignupPage";
 import ErrorPage from "./../views/ErrorPage";
-import SettingsPage from "./../views/SettingsPage";
+import AdminDashboardPage from "./../views/AdminDashboardPage";
 
 const routes = [{
         path: '/',
@@ -23,8 +23,8 @@ const routes = [{
     },
     {
         path: "/me",
-        name: "settings",
-        component: SettingsPage,
+        name: "adminDashboard",
+        component: AdminDashboardPage,
     },
     {
         path: "/:pathMatch(.*)*",

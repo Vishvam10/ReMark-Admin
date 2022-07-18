@@ -5,22 +5,27 @@
             <div class="row mb-3">
                 <h5 class="mb-2 mt-3">API KEY</h5>
                 <span class="code_block api_key">
-                    Aisjdf23#)@#23113921239057984*&$#@$(@*#&
-                    <ion-icon name="clipboard-outline"></ion-icon>
+                    <p :class="{ blur: showAPIKey == false }">{{ api_key }}</p>
+                    <div class="d-flex justify-content-between align-items-center" style="width: 16%;">
+                        <ion-icon v-if="showAPIKey == true" name="eye-outline" @click="toggleAPIKey" title="Show API Key"></ion-icon>
+                        <ion-icon v-else name="eye-off-outline" @click="toggleAPIKey"></ion-icon>
+                        <ion-icon name="clipboard-outline"></ion-icon>
+                    </div>
                 </span>
             </div>
             <div class="row mb-3">
                 <h5 class="mb-2 mt-3">Registered Websites</h5>
-                <span class="code_block">www.example.com</span>
-                <span class="code_block">www.example.com</span>
-                <span class="code_block">www.example.com</span>
+                <span v-for="website in websites" :key="website" class="code_block">{{ website.website_url }}</span>
+                <!-- <span class="code_block">{{ websites }}</span> -->
             </div>
         </form>
     </div>
-</template>
+</template>.website_url
 
 <style scoped>
-
+p {
+    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
 h5 {
     font-weight: bold;
 }
@@ -45,12 +50,31 @@ h5 {
     color: black;
 }
 
+.blur {
+    filter: blur(0.6rem);
+}
+
 </style>
 
 <script>
 export default {
     name: "DeveloperSettings",
-    // props: ["username", "email", "phone"],
-   
+    props: ["api_key", "websites"],
+    data() {
+        return {
+            showAPIKey : false,
+        }
+    },
+    methods : {
+        toggleAPIKey(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if(this.showAPIKey == false) {
+                this.showAPIKey = true
+            } else {
+                this.showAPIKey = false
+            }
+        },
+    }
 }
 </script>

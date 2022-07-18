@@ -4,7 +4,7 @@
         <form id="accountSettings">
             <div class="row mb-5">
                 <label for="username" class="mb-3" style="transform: translateX(-8px)">Username</label>
-                <input type="text" name="user_name" class="form-control form-control-lg" id="username" :value="username">
+                <input type="text" name="username" class="form-control form-control-lg" id="username" :value="username">
             </div>
             <div class="row mb-5">
                 <label for="email" class="mb-3" style="transform: translateX(-8px)">Email ID</label>
@@ -12,7 +12,7 @@
             </div>
             <div class="row mb-5">
                 <label for="bio" class="mb-3" style="transform: translateX(-8px)">Bio</label>
-                <input type="tel" name="bio_no" class="form-control form-control-lg" id="bio" :value="bio">
+                <input type="tel" name="bio" class="form-control form-control-lg" id="bio" :value="bio">
             </div>
             <div class="row mb-5 mt-5">
                 <button class="form-control form-control-lg btn btn-primary" style="height: 4rem; width: 16rem;" @click="updateUserDetails">Save Changes</button>
@@ -35,55 +35,48 @@ button {
 <script>
 export default {
     name: "AccountSettings",
-    // props: ["username", "email", "phone"],
+    props: ["username", "email", "bio"],
     methods : {
         validateEmail(s) {
             var re = /^\s*[\w\-+_]+(\.[\w\-+_]+)*@[\w\-+_]+\.[\w\-+_]+(\.[\w\-+_]+)*\s*$/;
             return String(s).search(re) == -1;
         },
-        validatePhone(s) {     
-            var re = /^[0-9]+$/;
-            return !re.test(s);
-        },
-        // updateUserDetails(e) {
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        //     let form = new FormData(accountSettings);
-        //     let data = {}
-        //     for(var pair of form.entries()){
-        //         data[pair[0]] = pair[1].trim();
-        //     }
+        updateUserDetails(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            let form = new FormData(document.getElementById("accountSettings"));
+            let data = {}
+            for(var pair of form.entries()){
+                data[pair[0]] = pair[1].trim();
+            }
             
-        //     console.log(data["email_id"]);
-        //     if(this.validateEmail(data["email_id"])) {
-        //         console.log("Please enter a valid email address");
-        //         return;
-        //     }
-        //     if(this.validatePhone(data["phone_no"])) {
-        //         console.log("Please enter a valid phone no");
-        //         return;
-        //     }
-        //     const BASE_API_URL = document.getElementById("base_api_url").textContent;
-        //     const user_id = localStorage.getItem("user_id");
-        //     const auth_token = localStorage.getItem("user_access_token");
-        //     const url = `${BASE_API_URL}/api/user/${user_id}`;
-        //     console.log(url);
-        //     fetch(url, {
-        //         method: "PUT",
-        //         mode: "cors",
-        //         headers: {
-        //             'Access-Control-Allow-Origin': "*",
-        //             'Authorization': `Bearer ${auth_token}`,
-        //             'Content-Type' : "application/json"
-        //         },
-        //         body: JSON.stringify(data)
-        //     })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //     })
-        //     .catch(err => console.log(err))
-        // },
+            if(this.validateEmail(data["email_id"])) {
+                console.log("Please enter a valid email address");
+                return;
+            }
+            const BASE_API_URL = document.getElementById("base_api_url").textContent;
+            const user_id = localStorage.getItem("user_id");
+            const api_key = localStorage.getItem("admin_api_key");
+            const auth_token = localStorage.getItem("user_access_token");
+            const url = `${BASE_API_URL}/api/user/${user_id}`;
+            console.log(url);
+            fetch(url, {
+                method: "PUT",
+                mode: "cors",
+                headers: {
+                    'API_KEY' : `${api_key}`,
+                    'Access-Control-Allow-Origin': "*",
+                    'Authorization': `Bearer ${auth_token}`,
+                    'Content-Type' : "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => console.log(err))
+        },
         // deleteUser(e) {
         //     const user_name = localStorage.getItem("user_name")
         //     const res = prompt("Are you sure ? If yes, please enter your username to confirm");
