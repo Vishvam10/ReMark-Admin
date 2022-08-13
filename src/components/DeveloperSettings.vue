@@ -15,7 +15,11 @@
             </div>
             <div class="row mb-3">
                 <h5 class="mb-2 mt-3">Registered Websites</h5>
-                <span v-for="website in websites" :key="website" class="code_block">{{ website.website_url }}</span>
+                <span v-for="website in websites" :key="website" class="code_block" style="height: 7rem;">
+                    <span style="color: grey; font-size: 1.2rem;"> Website URL : {{ website.website_url }}</span> 
+                    <br>
+                    Website ID : {{ website.website_id }}
+                </span>
                 <!-- <span class="code_block">{{ websites }}</span> -->
             </div>
         </form>

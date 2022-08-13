@@ -67,7 +67,6 @@ export default {
             for(var pair of formData.entries()){
                 data[pair[0]] = pair[1];
             }
-            console.log(data);
             const res = this.validateForm(data);
             if(res == "OK") {
                 const BASE_API_URL = document.getElementById("base_api_url").textContent;
