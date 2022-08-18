@@ -31,24 +31,68 @@
 </template>
 
 <script>
+
 export default {
     name: "signup",
     methods: {
-        validateForm(data){
-            if(data["username"] != "") {
-                var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-                if(re.test(data["password"])) {
-                    return "OK";
-                }
-                return "OK";
+        validatePassword(password) {
+            if(password.length > 20) {
+                return false;
             }
-            return "Empty Field Present"
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/
+            return passwordRegex.test(password);
+        },
+        validateUsername(username) {
+            if(username.length > 0) {
+                const alphanumericWithUnderscoreRegex = /^[0-9a-zA-Z_]*$/
+                return alphanumericWithUnderscoreRegex.test(username);
+            }
+            return false;
         },
         loginUser(e) {
             e.preventDefault();
             const formData = new FormData(document.getElementById('loginForm'))
             const data = {}
             for(var pair of formData.entries()){
+                if(pair[0] == "username") {
+                    if(!this.validateUsername(pair[1].trim())) {
+                        const error_message = "Only comma separated alphanumeric values with no trailing or leading spaces are allowed !" 
+                        const markup =
+                            `
+                            <div id="error_message">
+                                <h3 class="error_message_text">${error_message}</h3>
+                            </div>   
+                        `;
+                        const error_message_modal = document.getElementById("error_message");
+                        if(error_message_modal && error_message_modal.parentNode) {
+                            error_message_modal.parentNode.removeChild(error_message_modal);
+                        }
+                        document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
+                        setTimeout(() => {
+                            error_message_modal.parentNode.removeChild(error_message_modal);
+                        }, 2000)
+                    }
+                }
+                if(pair[0] == "password") {
+                    if(!this.validatePassword(pair[1].trim())) {
+                        const error_message = "Please enter a password with minimum 8 letter, with at least a symbol, upper and lower case letters and a number !" 
+                        const markup =
+                            `
+                            <div id="error_message">
+                                <h3 class="error_message_text">${error_message}</h3>
+                            </div>   
+                        `;
+                        const error_message_modal = document.getElementById(    "error_message");
+                        if(error_message_modal && error_message_modal.parentNode) {
+                            error_message_modal.parentNode.removeChild(error_message_modal);
+                        }
+                        document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
+                        setTimeout(() => {
+                            error_message_modal.parentNode.removeChild(error_message_modal);
+                        }, 2000)
+                        return false;
+                    }
+                }
                 data[pair[0]] = pair[1];
             }
             const res = this.validateForm(data);
@@ -66,7 +110,6 @@ export default {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     if(data["status"] == 200) {
                         localStorage.setItem("user_access_token", data["access_token"]);
                         localStorage.setItem("user_id", data["user_id"]);
@@ -75,9 +118,9 @@ export default {
                     } else {
                         const markup =
                         `
-                        <div id="error_message">
-                            <h5>${data["error_message"]}</h5>
-                        </div>   
+                            <div id="error_message">
+                                <h3>${data["error_message"]}</h3>
+                            </div>   
                         `;
                         document.getElementById("lm").insertAdjacentHTML("afterbegin", markup);
                         setTimeout(() => {

@@ -137,6 +137,21 @@ img {
   display: none;
 }
 
+#error_message {
+  margin: 5rem 0rem 0rem -1rem;
+  font-size: 1.2rem;
+  background: #ff2f2f;
+  border-radius: 0.9rem;
+  padding: 2rem;
+  color: white;
+  line-height: 1.7rem;
+}
+
+.error_message_text {
+  font-size: inherit;
+  line-height: inherit;
+}
+
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
 * {

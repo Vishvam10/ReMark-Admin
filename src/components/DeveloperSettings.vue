@@ -24,7 +24,7 @@
             </div>
         </form>
     </div>
-</template>.website_url
+</template>
 
 <style scoped>
 p {
