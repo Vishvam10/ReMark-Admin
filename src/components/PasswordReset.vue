@@ -36,9 +36,12 @@ button {
 export default {
     name: "PasswordReset",
     methods : {
-        validatePassword(password){
-            var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-            return re.test(password);
+        validatePassword(password) {
+            if(password.length > 20) {
+                return;
+            }
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/
+            return passwordRegex.test(password);
         },
         resetPassword(e) {
             e.preventDefault();
@@ -48,26 +51,42 @@ export default {
             for(var pair of form.entries()){
                 d[pair[0]] = pair[1].trim();
             }
-            console.log(d);
-            if(this.validatePassword(d["current_password"]) && this.validatePassword(d["new_password"])) {
-                console.log("Please enter a password containing atleast 8 characters containing : lowercase and upper letters, alphanumeric and symbols. No spaces are allowed ");
-                return;
-            }
             if(d["new_password"] != d["new_password_confirmation"]) {
-                console.log("The password confirmation does not match");
+                const error_message = "The password confirmation does not match !"
+                const markup = ` 
+                    <div id="error_message" style="margin: -4rem 0rem 0rem -1rem;">
+                        <h3 class="error_message_text">${error_message}</h3>
+                    </div>   
+                `;
+                document.getElementById("showMenu").insertAdjacentHTML("beforeend", markup);
+                setTimeout(() => {
+                    document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
+                }, 20000000)
                 return;
             }
+            if(!this.validatePassword(d["current_password"]) || !this.validatePassword(d["new_password"])) {
+                const error_message = "Please enter a password containing atleast 8 characters containing : lowercase and upper letters, alphanumeric and symbols. No spaces are allowed !"
+                const markup = `
+                    <div id="error_message" style="margin: -4rem 0rem 0rem -1rem;">
+                        <h3 class="error_message_text">${error_message}</h3>
+                    </div>   
+                `;
+                document.getElementById("showMenu").insertAdjacentHTML("beforeend", markup);
+                setTimeout(() => {
+                    document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
+                }, 20000000)
+                return;
+            }
+          
             let data = {
                 "current_password" : d["current_password"],
                 "new_password" : d["new_password"]
             }
-            console.log(data);
             const BASE_API_URL = document.getElementById("base_api_url").textContent;
             const user_id = localStorage.getItem("user_id");
             const auth_token = localStorage.getItem("user_access_token");
             const api_key = localStorage.getItem("admin_api_key");
             const url = `${BASE_API_URL}/api/password_reset/${user_id}`;
-            console.log(url);
             fetch(url, {
                 method: "POST",
                 mode: "cors",
@@ -82,8 +101,43 @@ export default {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                let error_message_text = ""
+                let markup = ""
+                if(data["error_message"]) {
+                    error_message_text = data["error_message"];
+                    markup = `
+                        <div id="error_message" style="margin: -4rem 0rem 0rem -1rem;">
+                            <h3 class="error_message_text">${error_message_text}</h3>
+                        </div>   
+                    `;
+                }
+                if(data["message"]) {
+                    error_message_text = data["message"];
+                    markup = `
+                        <div id="error_message" style="margin: -4rem 0rem 0rem -1rem; background: #399e66 !important;>
+                            <h3 class="error_message_text">${error_message_text}</h3>
+                        </div>   
+                    `;
+                    error_message_text = data["message"];
+                }
+                document.getElementById("showMenu").insertAdjacentHTML("beforeend", markup);
+                setTimeout(() => {
+                    document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
+                }, 20000000)
+                return;
+            })               
+            .catch(err => {
+                const markup = `
+                    <div id="error_message" style="margin: -4rem 0rem 0rem -1rem;">
+                        <h3 class="error_message_text">${err}</h3>
+                    </div>   
+                `;
+                document.getElementById("showMenu").insertAdjacentHTML("beforeend", markup);
+                setTimeout(() => {
+                    document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
+                }, 20000000)
+                console.log(err)
             })
-            .catch(err => console.log(err))
         }
     }
 }

@@ -37,7 +37,7 @@ export default {
     methods: {
         validatePassword(password) {
             if(password.length > 20) {
-                return false;
+                return;
             }
             const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/
             return passwordRegex.test(password);
@@ -63,13 +63,9 @@ export default {
                                 <h3 class="error_message_text">${error_message}</h3>
                             </div>   
                         `;
-                        const error_message_modal = document.getElementById("error_message");
-                        if(error_message_modal && error_message_modal.parentNode) {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
-                        }
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
+                            document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
                         }, 2000)
                     }
                 }
@@ -82,54 +78,46 @@ export default {
                                 <h3 class="error_message_text">${error_message}</h3>
                             </div>   
                         `;
-                        const error_message_modal = document.getElementById(    "error_message");
-                        if(error_message_modal && error_message_modal.parentNode) {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
-                        }
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
+                            document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
                         }, 2000)
-                        return false;
+                        return;
                     }
                 }
                 data[pair[0]] = pair[1];
             }
-            const res = this.validateForm(data);
-            if(res == "OK") {
-                const BASE_API_URL = document.getElementById("base_api_url").textContent;
-                const url = `${BASE_API_URL}/api/login`;
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if(data["status"] == 200) {
-                        localStorage.setItem("user_access_token", data["access_token"]);
-                        localStorage.setItem("user_id", data["user_id"]);
-                        localStorage.setItem("user_name", data["user_name"]);
-                        this.$router.push({ name: 'adminDashboard' }) 
-                    } else {
-                        const markup =
-                        `
-                            <div id="error_message">
-                                <h3>${data["error_message"]}</h3>
-                            </div>   
-                        `;
-                        document.getElementById("lm").insertAdjacentHTML("afterbegin", markup);
-                        setTimeout(() => {
-                            document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                        }, 2000)
-                    }
-                })
-                .catch(err => console.log(err))
-            }
+            const BASE_API_URL = document.getElementById("base_api_url").textContent;
+            const url = `${BASE_API_URL}/api/login`;
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data["status"] == 200) {
+                    localStorage.setItem("user_access_token", data["access_token"]);
+                    localStorage.setItem("user_id", data["user_id"]);
+                    localStorage.setItem("user_name", data["user_name"]);
+                    this.$router.push({ name: 'adminDashboard' }) 
+                } else {
+                    const markup = `
+                        <div id="error_message">
+                            <h3 class="error_message_text">${data["error_message"]}</h3>
+                        </div>   
+                    `;
+                    document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
+                    setTimeout(() => {
+                        document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
+                    }, 2000)
+                }
+            })
+            .catch(err => console.log(err))
         }
     }
 }

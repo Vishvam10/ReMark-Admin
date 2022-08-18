@@ -81,14 +81,11 @@ export default {
                                 <h3 class="error_message_text">${error_message}</h3>
                             </div>   
                         `;
-                        const error_message_modal = document.getElementById("error_message");
-                        if(error_message_modal && error_message_modal.parentNode) {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
-                        }
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
+                            document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
                         }, 2000)
+                        return;
                     }
                 }
                 if(pair[0] == "password") {
@@ -100,18 +97,14 @@ export default {
                                 <h3 class="error_message_text">${error_message}</h3>
                             </div>   
                         `;
-                        const error_message_modal = document.getElementById(    "error_message");
-                        if(error_message_modal && error_message_modal.parentNode) {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
-                        }
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
+                            document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
                         }, 2000)
-                        return false;
+                        return;
                     }
                 }
-                if(pair[0] == "email") {
+                if(pair[0] == "email_id") {
                     if(!this.validateEmail(pair[1].trim())) {
                         const error_message = "Please enter an email ID without dots or underscores !" 
                         const markup =
@@ -120,15 +113,11 @@ export default {
                                 <h3 class="error_message_text">${error_message}</h3>
                             </div>   
                         `;
-                        const error_message_modal = document.getElementById(    "error_message");
-                        if(error_message_modal && error_message_modal.parentNode) {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
-                        }
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
+                            document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
                         }, 2000)
-                        return false;
+                        return;
                     }
                 }
                 if(pair[0] == "bio") {
@@ -140,41 +129,34 @@ export default {
                                 <h3 class="error_message_text">${error_message}</h3>
                             </div>   
                         `;
-                        const error_message_modal = document.getElementById(    "error_message");
-                        if(error_message_modal && error_message_modal.parentNode) {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
-                        }
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
-                            error_message_modal.parentNode.removeChild(error_message_modal);
+                            document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
                         }, 2000)
-                        return false;
+                        return;
                     }
                 }
                 data[pair[0]] = pair[1];
             }
-            const res = this.validateForm(data);
-            if(res == "OK") {
-                const BASE_API_URL = document.getElementById("base_api_url").textContent;
-                const url = `${BASE_API_URL}/api/user`;
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(res => res.json())
-                .then(data => {
-                    console.log("RESULT : ", data);
-                    localStorage.setItem("user_name", data["user_name"]);
-                    localStorage.setItem("user_id", data["user_id"]);
-                    this.$router.push({ name: 'login' })
-                })
-                .catch(err => console.log(err))
-            }
+            const BASE_API_URL = document.getElementById("base_api_url").textContent;
+            const url = `${BASE_API_URL}/api/user`;
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("RESULT : ", data);
+                localStorage.setItem("user_name", data["user_name"]);
+                localStorage.setItem("user_id", data["user_id"]);
+                this.$router.push({ name: 'login' })
+            })
+            .catch(err => console.log(err))
         }
      
     }

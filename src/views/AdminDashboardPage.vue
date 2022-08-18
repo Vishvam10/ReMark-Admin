@@ -1,7 +1,7 @@
 <template>
     <div class="bg">
         <span style="visibility: hidden; display: none" id="base_api_url">{{BASE_API_URL}}</span>
-        <div class="settings_container">
+        <div class="settings_container" id="settings_container">
             <h2 class="settings_header">Admin Dashboard</h2>
             <!-- <router-link to="/dashboard">
                 <ion-icon name="close-outline" style="position: fixed; top: 6rem; right: 37%; color: #dc3545; font-size: 3rem"></ion-icon>
@@ -87,12 +87,12 @@ h5:active {
     align-items: center;
     margin: 1rem 0rem 0rem 1rem;
     position: fixed;
-    top: 6rem;
+    top: 8%;
     height: 57rem;
     border-radius: 1rem;
     box-shadow: rgba(75, 77, 80, 0.2) 0px 8px 24px;
     background: #111111;
-    left: 26rem;
+    left: 19%;
     word-wrap: break-word;
     z-index: 10;
 }
