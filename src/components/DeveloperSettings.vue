@@ -1,7 +1,7 @@
 <template>
     <h3 class="mb-5" style="margin: 0rem 0rem 0rem -1rem;">Developer Settings</h3>
     <div class="input-group input-group-sm mb-3 d-flex flex-column justify-content-center">
-        <form id="accountSettings">
+        <div id="accountSettings">
             <div class="row mb-3">
                 <h5 class="mb-2 mt-3">API KEY</h5>
                 <span class="code_block api_key">
@@ -20,9 +20,16 @@
                     <br>
                     Website ID : {{ website.website_id }}
                 </span>
-                <!-- <span class="code_block">{{ websites }}</span> -->
             </div>
-        </form>
+            <div class="row mb-3">
+                <h5 class="mb-2 mt-3">Downloadables</h5>
+                <span class="code_block" style="height: 7rem;">
+                    <span style="color: grey; font-size: 1.2rem;">Remark Script File : </span> 
+                    <br>
+                    <h5 id="downloadFile" class="downloadFile" @click="downloadScript">Click here to download</h5>
+                </span>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -41,7 +48,7 @@ h5 {
 }
 .code_block {
     height: 5rem;
-    width: 100%;
+    width: 80%;
     padding: 1.4rem;
     background: white;
     border-radius: 1rem;
@@ -58,6 +65,19 @@ h5 {
     filter: blur(0.6rem);
 }
 
+.downloadFile {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #0d6efd;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.downloadFile:hover {
+    color: #0c51b8;
+}
+
+
 </style>
 
 <script>
@@ -65,7 +85,7 @@ export default {
     name: "DeveloperSettings",
     props: ["api_key", "websites"],
     data() {
-        return {
+        return {    
             showAPIKey : false,
         }
     },
@@ -79,6 +99,36 @@ export default {
                 this.showAPIKey = false
             }
         },
+        downloadScript(e) {
+            e.preventDefault();
+            e.stopPropagation();
+             const BASE_API_URL = document.getElementById("base_api_url").textContent;
+            const user_id = localStorage.getItem("user_id");
+            const auth_token = localStorage.getItem("user_access_token");
+            const api_key = localStorage.getItem("admin_api_key");
+            const url = `${BASE_API_URL}/api/download/${user_id}`;
+            fetch(url, {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                    'API_KEY' : `${api_key}`,
+                    'Access-Control-Allow-Origin': "*",
+                    'Authorization': `Bearer ${auth_token}`,
+                    'Content-Type' : "application/json"
+                },
+            })
+            .then(res => res.blob())
+            .then((data) => {
+                let url = window.URL.createObjectURL(data);
+                let link = document.createElement('a');
+                document.body.appendChild(link);
+                link.style = "display: none";
+                link.href = url;
+                link.download = "remark.v.0.1.js";
+                link.click();
+            }) 
+            .catch(error => console.log(error))
+        }
     }
 }
 </script>

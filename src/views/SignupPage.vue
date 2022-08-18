@@ -72,7 +72,7 @@ export default {
             const formData = new FormData(document.getElementById('signupForm'))
             const data = {}
             for(var pair of formData.entries()){
-                 if(pair[0] == "username") {
+                if(pair[0] == "username") {
                     if(!this.validateUsername(pair[1].trim())) {
                         const error_message = "Please enter a username with alphanumerics, underscores and no spaces !" 
                         const markup =
@@ -84,7 +84,7 @@ export default {
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
                             document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                        }, 2000)
+                        }, 1000)
                         return;
                     }
                 }
@@ -100,7 +100,7 @@ export default {
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
                             document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                        }, 2000)
+                        }, 1000)
                         return;
                     }
                 }
@@ -116,7 +116,7 @@ export default {
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
                             document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                        }, 2000)
+                        }, 1000)
                         return;
                     }
                 }
@@ -132,11 +132,11 @@ export default {
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
                             document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                        }, 2000)
+                        }, 1000)
                         return;
                     }
                 }
-                data[pair[0]] = pair[1];
+                data[pair[0]] = pair[1].trim();
             }
             const BASE_API_URL = document.getElementById("base_api_url").textContent;
             const url = `${BASE_API_URL}/api/user`;

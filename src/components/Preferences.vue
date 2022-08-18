@@ -5,33 +5,33 @@
             <h5 class="mb-4">Annotation Layout</h5>
             <div class="preference_container">
                 <input class="form-check-input" type="radio" name="annotation_layout" value="hover_box">
-                <label class="form-check-label" style="transform: translateX(-4rem)">Hover Box</label>
+                <label class="form-check-label">Hover Box</label>
                 <input class="form-check-input" type="radio" name="annotation_layout" value="sidebar" selected>
-                <label class="form-check-label" style="transform: translateX(-4rem)">Sidebar</label>
+                <label class="form-check-label">Sidebar</label>
             </div>
             <h5 class="mb-4 mt-4">Export Format (Under Development)</h5>
             <div class="preference_container">
                 <input disabled class="form-check-input" type="radio" name="export_format" value="csv">
-                <label class="form-check-label" style="transform: translateX(-5rem)"> CSV</label>
+                <label class="form-check-label"> CSV</label>
                 <input disabled class="form-check-input" type="radio" name="export_format" value="excel" selected>
-                <label class="form-check-label" style="transform: translateX(-5rem)"> Excel</label>
+                <label class="form-check-label"> Excel</label>
             </div>
             <h5 class="mb-4 mt-4">Report Format (Under Development)</h5>
             <div class="preference_container">
                 <input disabled class="form-check-input" type="radio" name="report_format" value="html">
-                <label class="form-check-label" style="transform: translateX(-5rem)"> HTML</label>
+                <label class="form-check-label"> HTML</label>
                 <input disabled class="form-check-input" type="radio" name="report_format" value="pdf" selected>
-                <label class="form-check-label" style="transform: translateX(-5rem)"> PDF</label>
+                <label class="form-check-label"> PDF</label>
             </div>
             <!-- <h5 class="mb-2 mt-3">Chat Reminder</h5>
             <div class="preference_container">
                 <input class="form-check-input" type="radio" name="reminders" value="on" data-val="on" @click="reminderToggle" id="onReminder">
-                <label class="form-check-label" style="transform: translateX(-5rem)">On</label>
+                <label class="form-check-label">On</label>
                 <input class="form-check-input" type="radio" name="reminders" value="off" data-val="off" @click="reminderToggle" id="offReminder">
-                <label class="form-check-label" style="transform: translateX(-5rem)">Off</label>
+                <label class="form-check-label">Off</label>
             </div>
             <div class="row mb-3 mt-3" style="width: 100%;" v-if="chatReminderToggle ">
-                <label for="webhook_url" class="mb-3" style="transform: translateX(-5rem)" >Webhook URL</label>
+                <label for="webhook_url" class="mb-3" >Webhook URL</label>
                 <input type="text" name="webhook_url" class="form-control form-control-lg" id="webhook_url" :value="webhook_url">
                 <p style="margin: 1rem 0rem 0rem -0.7rem"> Frequency : Daily at 10:30 AM. </p>
             </div> -->
@@ -41,18 +41,18 @@
                 <h5 class="mb-4" style="margin: 1rem 0rem 0rem 0rem;">Dark Mode </h5>
                 <div class="row mb-4">
                     <div class="form-check form-switch">
-                        <input class="form-check-input mb-3" style="transform: translate(4rem, -0.4rem); height: 3rem; width: 6rem;" type="checkbox" id="themeSwitch" @change="themeSwitcher">
+                        <input class="form-check-input mb-3" style="transform: translate(3rem, -0.4rem); height: 3rem; width: 6rem;" type="checkbox" id="themeSwitch" @change="themeSwitcher">
                     </div>
                 </div>
                 <!-- <h5 class="mb-2">Color Scheme ( Reload required )  </h5>
                 <div class="row mb-3">
                     <div class="preference_container">
                         <input class="form-check-input" type="radio" name="color_palette" value="red">
-                        <label class="form-check-label" style="transform: translateX(-5rem)"> Red</label>
+                        <label class="form-check-label"> Red</label>
                         <input class="form-check-input" type="radio" name="color_palette" value="blue" selected>
-                        <label class="form-check-label" style="transform: translateX(-5rem)"> Blue</label>
+                        <label class="form-check-label"> Blue</label>
                         <input class="form-check-input" type="radio" name="color_palette" value="green" >
-                        <label class="form-check-label" style="transform: translateX(-5rem)"> Yellow</label>
+                        <label class="form-check-label"> Yellow</label>
                     </div>
                 </div> -->
                 <div class="row mb-3 mt-5">

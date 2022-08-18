@@ -2,15 +2,15 @@
     <h3 class="mb-5" style="margin: 0rem 0rem 0rem -1rem;">Password Reset</h3>
     <div class="input-group input-group-sm mb-3 d-flex flex-column justify-content-center">
         <form id="resetPasswordForm">
-            <div class="row mb-5">
+            <div class="row mb-5" style="width: 80%;">
                 <label for="current_password" class="mb-3" style="transform: translateX(-8px)">Enter Current Password</label>
                 <input type="password" name="current_password" class="form-control form-control-lg" id="current_password">
             </div>
-            <div class="row mb-5">
+            <div class="row mb-5" style="width: 80%;">
                 <label for="new_password" class="mb-3" style="transform: translateX(-8px)">Enter New Password</label>
                 <input type="password" name="new_password" class="form-control form-control-lg" id="new_password">
             </div>
-            <div class="row mb-5">
+            <div class="row mb-5" style="width: 80%;">
                 <label for="new_password_confirmation" class="mb-3" style="transform: translateX(-8px)">Confirm Password</label>
                 <input type="password" name="new_password_confirmation" class="form-control form-control-lg" id="new_password_confirmation">
                 <div class="row mb-5 mt-5">
@@ -61,7 +61,7 @@ export default {
                 document.getElementById("showMenu").insertAdjacentHTML("beforeend", markup);
                 setTimeout(() => {
                     document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                }, 20000000)
+                }, 1000)
                 return;
             }
             if(!this.validatePassword(d["current_password"]) || !this.validatePassword(d["new_password"])) {
@@ -74,7 +74,7 @@ export default {
                 document.getElementById("showMenu").insertAdjacentHTML("beforeend", markup);
                 setTimeout(() => {
                     document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                }, 20000000)
+                }, 1000)
                 return;
             }
           
@@ -123,7 +123,7 @@ export default {
                 document.getElementById("showMenu").insertAdjacentHTML("beforeend", markup);
                 setTimeout(() => {
                     document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                }, 20000000)
+                }, 1000)
                 return;
             })               
             .catch(err => {
@@ -135,7 +135,7 @@ export default {
                 document.getElementById("showMenu").insertAdjacentHTML("beforeend", markup);
                 setTimeout(() => {
                     document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                }, 20000000)
+                }, 1000)
                 console.log(err)
             })
         }

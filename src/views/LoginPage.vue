@@ -66,7 +66,7 @@ export default {
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
                             document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                        }, 2000)
+                        }, 1000)
                     }
                 }
                 if(pair[0] == "password") {
@@ -81,11 +81,11 @@ export default {
                         document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
                             document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                        }, 2000)
+                        }, 1000)
                         return;
                     }
                 }
-                data[pair[0]] = pair[1];
+                data[pair[0]] = pair[1].trim();
             }
             const BASE_API_URL = document.getElementById("base_api_url").textContent;
             const url = `${BASE_API_URL}/api/login`;
@@ -114,7 +114,7 @@ export default {
                     document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
                     setTimeout(() => {
                         document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
-                    }, 2000)
+                    }, 1000)
                 }
             })
             .catch(err => console.log(err))

@@ -34,7 +34,7 @@
                     <DeveloperSettings :api_key="api_key" :websites="website_data"/> 
                 </template>
             </div>
-            <span v-if="active <= 5" style="position: relative; bottom: -7rem; left: 0rem; font-size: 1rem;">* If a field does not change, please reload the page</span>
+            <span v-if="active <= 5" style="position: relative; bottom: 0rem; left: 0rem; font-size: 1rem;">* If a field does not change, please reload the page</span>
         </div>
     </div>
 </template>
@@ -98,8 +98,9 @@ h5:active {
 }
 
 #showMenu {
-    margin: 0rem 0rem 0rem 24rem;
+    margin: 6rem 0rem 0rem 24rem;
     width: 70%;
+    height: 100%;
 }
 
 .selectedLink {

@@ -2,11 +2,11 @@
     <h3 class="mb-5" style="margin: 0rem 0rem 0rem -1rem;">Register Website</h3>
     <div class="input-group input-group-sm mb-3 d-flex flex-column justify-content-center">
         <form id="registerWebsiteForm">
-            <div class="row mb-5">
+            <div class="row mb-5" style="width: 80%;">
                 <label for="website_url" class="mb-3" style="transform: translateX(-8px)">Enter Website URL</label>
                 <input type="website_url" name="website_url" class="form-control form-control-lg" id="website_url">
             </div>
-            <div class="row mb-5 mt-5">
+            <div class="row mb-5 mt-5" style="width: 80%;">
                 <button class="form-control form-control-lg btn btn-primary" style="height: 4rem; width: 16rem;" @click="registerWebsite">Register Website</button>
             </div>
         </form>
@@ -51,7 +51,6 @@ export default {
                 data[pair[0]] = pair[1];
             }
             const res = this.validateURL(data.website_url);
-            console.log(res);
             if(res != -1) {
                 const user_id = localStorage.getItem("user_id");
                 const auth_token = localStorage.getItem("user_access_token");
@@ -75,6 +74,19 @@ export default {
                     console.log("RESULT : ", data);
                 })
                 .catch(err => console.log(err))
+            } else {
+                const error_message = "Please enter a valid website URL !" 
+                const markup =
+                    `
+                    <div id="error_message">
+                        <h3 class="error_message_text">${error_message}</h3>
+                    </div>   
+                `;
+                document.getElementById("registerWebsiteForm").insertAdjacentHTML("beforeend", markup);
+                setTimeout(() => {
+                    document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
+                }, 1000)
+                return;
             }
         }
     }

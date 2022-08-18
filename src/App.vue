@@ -22,7 +22,6 @@ a {
   list-style: none;
   font-size: 1.6rem;
 }
-
 input {
   height: 4rem;
 }
@@ -30,6 +29,9 @@ input[type=radio] {
   width: 2rem;
   height: 2rem;
   margin: 1rem 0rem 1rem 0rem;
+}
+label {
+  transform: translate(-2rem);
 }
 option {
   color: black;
