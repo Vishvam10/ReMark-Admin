@@ -7,9 +7,6 @@
         <div class="row">
             <section class="p-header">
                 <!-- <h4 class="header-text">Welcome to</h4> -->
-                <h1 class="heading create">Create a Deck,</h1>
-                <h1 class="heading playAndReview">Play and</h1>
-                <h1 class="heading remember">Remember Stuff</h1>
                 <div class="row" style="margin: 8rem 0rem 2rem 0rem">
                     <div class="col-6">
                         <div class="customButton signUpButton">
@@ -22,7 +19,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="header-details">Brainstorm is a flashcard app that will boost your memory and make you remember important things quickly. </p>
+                <p class="header-details">Remark is a . . .</p>
             </section>
         </div>
         <div class="row">

@@ -4,7 +4,7 @@
         <div class="settings_container" id="settings_container">
             <span class="settings_header_container">
                 <h2 class="settings_header">Admin Dashboard</h2>
-                <button type="button" class="form-control form-control-lg btn btn-outline-primary" id="logoutBtn" @click="handleLogut">Logout</button>
+                <button type="button" class="form-control form-control-lg btn btn-outline-primary" id="logoutBtn" @click="handleLogout">Logout</button>
             </span>
             <div class="menu_options">
                 <h5 :class="{ selectedLink: active == 1 }" @click="showPage" data-tabno=1 style="margin: 0rem 1rem 0rem 0rem;">Edit<br>Profile</h5>
