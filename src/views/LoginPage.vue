@@ -20,11 +20,12 @@
                     <div class="row mb-3 mt-5">
                         <button name="submit" class="form-control form-control-lg btn btn-primary" style="height: 4rem" @click="loginUser">Login</button>
                     </div>
-                    <div style="margin: 2rem 0rem -3rem -7.7rem; display: flex; flex-direction: row; justify-content: center; width: 100%;">
-                        <p style="margin: 0rem 0rem 0rem 3rem; font-size: 1.2rem;">Don't have an account ?  </p>
-                        <router-link to="/signup" style="margin: 0rem 0rem 0rem 1rem; font-size: 1.2rem;">Create one</router-link>
-                    </div>
                 </form>
+                <div style="margin: 2rem 0rem -3rem -7.7rem; display: flex; flex-direction: row; justify-content: center; width: 100%;">
+                    <p style="margin: 0rem 0rem 0rem 3rem; font-size: 1.2rem;">Don't have an account ?  </p>
+                    <router-link to="/signup" style="margin: 0rem 0rem 0rem 1rem; font-size: 1.2rem;">Create one</router-link>
+                </div>
+                <router-link to="/" style="margin: 4rem 0rem -2rem -0.7rem; font-size: 1.2rem;">Go back to website </router-link>
             </div>
         </div>
     </div>

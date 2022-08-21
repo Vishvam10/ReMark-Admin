@@ -67,8 +67,7 @@ img {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #00e1ff;
-  background-image: linear-gradient(90deg, #00e1ff 0%, #001aff 100%);
+  background-image: linear-gradient(to right, rgb(148, 0, 250), rgb(255, 2, 26))
 } 
 .dashboard {
   width: 120rem;
