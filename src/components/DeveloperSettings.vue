@@ -5,11 +5,11 @@
             <div class="row mb-3">
                 <h5 class="mb-2 mt-3">API KEY</h5>
                 <span class="code_block api_key">
-                    <p :class="{ blur: showAPIKey == false }">{{ api_key }}</p>
+                    <p :class="{ blur: showAPIKey == false }" id="api_key_paragraph">{{ api_key }}</p>
                     <div class="d-flex justify-content-between align-items-center" style="width: 16%;">
                         <ion-icon v-if="showAPIKey == true" name="eye-outline" @click="toggleAPIKey" title="Show API Key"></ion-icon>
                         <ion-icon v-else name="eye-off-outline" @click="toggleAPIKey"></ion-icon>
-                        <ion-icon name="clipboard-outline"></ion-icon>
+                        <ion-icon name="clipboard-outline" @click="copyAPIKey" id="copy"></ion-icon>
                     </div>
                 </span>
             </div>
@@ -98,6 +98,20 @@ export default {
             } else {
                 this.showAPIKey = false
             }
+        },
+        copyAPIKey(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const APIKeyText = document.getElementById("api_key_paragraph").textContent;
+            navigator.clipboard.writeText(APIKeyText);
+            const markup = `
+                <span style="position: absolute; right: 6rem; color: #0d6efd;" id="copyText">Copied !</span>
+            `
+            document.getElementById("copy").insertAdjacentHTML("beforebegin", markup);
+            setTimeout(() => {
+                document.getElementById("copyText").parentElement.removeChild(document.getElementById("copyText"));
+            }, 500)
+
         },
         downloadScript(e) {
             e.preventDefault();

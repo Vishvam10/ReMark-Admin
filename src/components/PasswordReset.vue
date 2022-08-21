@@ -54,7 +54,7 @@ export default {
             if(d["new_password"] != d["new_password_confirmation"]) {
                 const error_message = "The password confirmation does not match !"
                 const markup = ` 
-                    <div id="error_message" style="margin: -4rem 0rem 0rem -1rem;">
+                    <div id="error_message" style="margin: -4rem 1rem 2rem -1rem; padding: 2rem;">
                         <h3 class="error_message_text">${error_message}</h3>
                     </div>   
                 `;
@@ -67,7 +67,7 @@ export default {
             if(!this.validatePassword(d["current_password"]) || !this.validatePassword(d["new_password"])) {
                 const error_message = "Please enter a password containing atleast 8 characters containing : lowercase and upper letters, alphanumeric and symbols. No spaces are allowed !"
                 const markup = `
-                    <div id="error_message" style="margin: -4rem 0rem 0rem -1rem;">
+                    <div id="error_message" style="margin: -4rem 1rem 2rem -1rem; padding: 2rem;">
                         <h3 class="error_message_text">${error_message}</h3>
                     </div>   
                 `;
@@ -100,7 +100,6 @@ export default {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 let error_message_text = ""
                 let markup = ""
                 if(data["error_message"]) {

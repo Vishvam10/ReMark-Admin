@@ -66,11 +66,11 @@ export default {
                         const error_message = "Please enter a username with alphanumerics, underscores and no spaces !" 
                         const markup =
                             `
-                            <div id="error_message">
+                            <div id="error_message" style="margin: 2rem 1rem 2rem -1rem; padding: 2rem;">
                                 <h3 class="error_message_text">${error_message}</h3>
                             </div>   
                         `;
-                        document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
+                        document.getElementById("showMenu").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
                             document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
                         }, 1000)
@@ -82,11 +82,11 @@ export default {
                         const error_message = "Please enter an email ID without dots or underscores !" 
                         const markup =
                             `
-                            <div id="error_message">
+                            <div id="error_message" style="margin: 2rem 1rem 2rem -1rem; padding: 2rem;">
                                 <h3 class="error_message_text">${error_message}</h3>
                             </div>   
                         `;
-                        document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
+                        document.getElementById("showMenu").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
                             document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
                         }, 1000)
@@ -98,11 +98,11 @@ export default {
                         const error_message = "Please enter a valid bio with more than 0 and less than 80 characters !" 
                         const markup =
                             `
-                            <div id="error_message">
+                            <div id="error_message" style="margin: 2rem 1rem 2rem -1rem; padding: 2rem;">
                                 <h3 class="error_message_text">${error_message}</h3>
                             </div>   
                         `;
-                        document.getElementById("lm").insertAdjacentHTML("beforeend", markup);
+                        document.getElementById("showMenu").insertAdjacentHTML("beforeend", markup);
                         setTimeout(() => {
                             document.getElementById("error_message").parentNode.removeChild(document.getElementById("error_message"));
                         }, 1000)
@@ -132,7 +132,7 @@ export default {
             .then(data => {
                 if(data["error_message"]) {
                     const markup = `
-                        <div id="error_message" style="margin: -4rem 0rem 0rem -1rem;">
+                        <div id="error_message" style="margin: -4rem 1rem 0rem -1rem;">
                             <h3 class="error_message_text">${data}</h3>
                         </div>   
                     `;
@@ -144,7 +144,7 @@ export default {
                 }
                 const error_message_text = "Profile edited successfully !"
                 const markup = `
-                    <div id="error_message" style="margin: 2rem 0rem 0rem -1rem; background: #399e66;">
+                    <div id="error_message" style="margin: 2rem 1rem 2rem -1rem; background: #399e66;">
                         <h3 class="error_message_text">${error_message_text}</h3>
                     </div>   
                 `;

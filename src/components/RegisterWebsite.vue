@@ -78,7 +78,7 @@ export default {
                 const error_message = "Please enter a valid website URL !" 
                 const markup =
                     `
-                    <div id="error_message">
+                    <div id="error_message" style="margin: 2rem 1rem 2rem -1rem">
                         <h3 class="error_message_text">${error_message}</h3>
                     </div>   
                 `;

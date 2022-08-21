@@ -2,10 +2,10 @@
     <div class="bg">
         <span style="visibility: hidden; display: none" id="base_api_url">{{BASE_API_URL}}</span>
         <div class="settings_container" id="settings_container">
-            <h2 class="settings_header">Admin Dashboard</h2>
-            <!-- <router-link to="/dashboard">
-                <ion-icon name="close-outline" style="position: fixed; top: 6rem; right: 37%; color: #dc3545; font-size: 3rem"></ion-icon>
-            </router-link> -->
+            <span class="settings_header_container">
+                <h2 class="settings_header">Admin Dashboard</h2>
+                <button type="button" class="form-control form-control-lg btn btn-outline-primary" id="logoutBtn" @click="handleLogut">Logout</button>
+            </span>
             <div class="menu_options">
                 <h5 :class="{ selectedLink: active == 1 }" @click="showPage" data-tabno=1 style="margin: 0rem 1rem 0rem 0rem;">Edit<br>Profile</h5>
                 <h5 :class="{ selectedLink: active == 2}" @click="showPage" data-tabno=2>Password<br>Reset</h5>
@@ -62,9 +62,9 @@ h5:active {
 
 .settings_header {
     font-weight: bold;
+    font-size: 2.4rem;
     margin: 1rem 1rem 1rem 1rem;
-    position: fixed;
-    top: 5rem;
+    width: 80%;
 }
 
 .settings_container {
@@ -78,6 +78,21 @@ h5:active {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.settings_header_container {
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 1.3rem 0rem 0rem 28rem;
+}
+#logoutBtn {
+    width: 20%;
+    height: 4rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 0.4rem;
 }
 .menu_options {
     width: 16rem;
@@ -98,7 +113,7 @@ h5:active {
 }
 
 #showMenu {
-    margin: 6rem 0rem 0rem 24rem;
+    margin: 1rem 0rem 0rem 24rem;
     width: 70%;
     height: 100%;
 }
@@ -182,7 +197,6 @@ export default {
             .then(data => {
                 this.api_key = data.data.api_key;
                 localStorage.setItem("admin_api_key", this.api_key)
-                console.log(data.data.api_key);
             })
             .catch(err => console.log(err))
 
@@ -206,7 +220,6 @@ export default {
             })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 this.website_data = data
             })
             .catch(err => console.log(err))
@@ -232,6 +245,12 @@ export default {
             //     "reminders" : "on",
             //     "reminder_frequency" : "2d"
             // }
+        },
+        handleLogout(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            localStorage.clear();
+            this.$router.push({ name: 'login' }) 
         }
     },
     created() {
