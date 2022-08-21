@@ -31,13 +31,30 @@
                 </form>
                 <div style="margin: 2rem 0rem -3rem -7.7rem; display: flex; flex-direction: row; justify-content: center; width: 100%;">
                     <p style="margin: 0rem 0rem 0rem 1rem; font-size: 1.2rem;">Have an account already ?  </p>
-                    <router-link to="/login" style="margin: 0rem 0rem 0rem 1rem; font-size: 1.2rem;">Login</router-link>
+                    <router-link to="/login" style="margin: 0rem 0rem 0rem 1rem; font-size: 1.2rem;" class="link">Login</router-link>
                 </div>
                 <router-link to="/" style="margin: 4rem 0rem -2rem -0.7rem; font-size: 1.2rem;">Go back to website </router-link>
             </div>
         </div>
     </div>
 </template>
+
+
+<style scoped>
+.link {
+    background: linear-gradient(to right, rgb(148, 0, 250), rgb(255, 2, 26));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.1s ease-in-out; 
+}
+.link:hover {
+    transform: scale(1.15);
+}
+.link:active {
+    transform: scale(1.0);
+}
+</style>
 
 <script>
 export default {

@@ -1,9 +1,9 @@
 <template>
      <div class="home">
-        <nav>
+        <!-- <nav>
             <router-link to="/login" style="color: black; position: absolute; right: 24rem;">Login</router-link>
             <router-link to="/signup" style="color: black; position: absolute; right: 8rem;">Sign Up</router-link>
-        </nav>
+        </nav> -->
         <div class="row">
             <section class="p-header">
                 <h4 class="header-text">Annotate any website with</h4>
@@ -30,21 +30,26 @@
             </section>
         </div>
         <div class="row">
-            <section class="remark_section" style="margin: 18rem 0rem 8rem 0rem;">
+            <section class="remark_section" style="margin: 8rem 0rem 12rem 0rem">
                 <div class="container">
                     <div class="row">
-                        <h1 style="font-weight: bold; font-size: 8rem; margin: 0rem 0rem 2rem 0rem">What is it ?</h1>
-                        <p class="text" style="width: 40%">Remark is a lightweight, easy-to-use and hihgly customizable JavaScript library for annotating websites. The logic is implemented in pure JS and markup and styling is taken care by HTML5 and CSS3.</p>
+                        <h1 style="font-weight: bold; font-size: 8rem; margin: 8rem 0rem 4rem 0rem;">What is it ?</h1>
+                        <div class="col-6">
+                            <p class="text" style="width: 40%">Remark is a lightweight, easy-to-use and hihgly customizable JavaScript library for annotating websites. The logic is implemented in pure JS and markup and styling is taken care by HTML5 and CSS3.</p>
+                        </div>
+                        <div class="col-6">
+                            <img src="./../static/images/remark(3).png" alt="CreateAnnotationImage" class="remark_img" style="margin: -13rem 0rem 0rem -6rem;">
+                        </div>
                     </div>
 
                 </div>
             </section>
         </div>
         <div class="row">
-            <section class="remark_section" style="margin: 18rem 0rem 12rem 0rem;">
+            <section class="remark_section" style="margin: 8rem 0rem 12rem 0rem">
                 <div class="container">
                     <div class="row">
-                        <h1 style="font-weight: bold; font-size: 8rem; margin: 0rem 0rem 2rem 0rem">Installation</h1>
+                        <h1 style="font-weight: bold; font-size: 8rem; margin: 0rem 0rem 4rem 0rem">Installation</h1>
                         <div class="col-3">
                             <div class="card">
                                 <h4 class="card_header">1</h4>
@@ -74,10 +79,10 @@
             </section>
         </div>
         <div class="row">
-            <section class="remark_section">
+            <section class="remark_section" style="margin: 0rem 0rem 12rem 0rem;">
                 <div class="container">
                     <div class="row">
-                        <h1 style="font-weight: bold; font-size: 8rem; margin: 0rem 0rem 12rem 0rem">Usage</h1>
+                        <h1 style="font-weight: bold; font-size: 8rem; margin: 0rem 0rem 4rem 0rem;">Usage</h1>
                         <div class="col-4">
                             <div class="card usage_card">
                                 <h4 class="card_header">1</h4>
@@ -111,21 +116,90 @@
                 </div>
             </section>
         </div>
-        <!-- <div class="row">
+          <div class="row">
+            <section class="remark_section" style="margin: 8rem 0rem 12rem 0rem">
+                <div class="container">
+                    <div class="row">
+                        <h1 style="font-weight: bold; font-size: 8rem; margin: 0rem 0rem 6rem 0rem">UI Components</h1>
+                        <div class="col-4">
+                             <img src="./../static/images/remark(2).png" alt="galleryImage9" class="remark_img">
+                        </div>
+                        <div class="col-4">
+                             <img src="./../static/images/remark(6).png" alt="galleryImage2" class="remark_img">
+                        </div>
+                        <div class="col-4">
+                             <img src="./../static/images/remark(7).png" alt="galleryImage3" class="remark_img">
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 8rem 0rem 0rem 0rem;">
+                        <div class="col-4">
+                             <img src="./../static/images/remark(11).png" alt="galleryImage4" class="remark_img">
+                        </div>
+                        <div class="col-4">
+                             <img src="./../static/images/remark(10).png" alt="galleryImage7" class="remark_img">
+                        </div>
+                        <div class="col-4">
+                             <img src="./../static/images/remark(12).png" alt="galleryImage6" class="remark_img">
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 8rem 0rem 0rem 0rem;">
+                        <div class="col-3">
+                             <img src="./../static/images/remark(13).png" alt="galleryImage8" class="remark_img">
+                        </div>
+                        <div class="col-3">
+                             <img src="./../static/images/remark(14).png" alt="galleryImage9" class="remark_img">
+                        </div>
+                        <div class="col-3">
+                             <img src="./../static/images/remark(16).png" alt="galleryImage10" class="remark_img">
+                        </div>
+                        <div class="col-3">
+                             <img src="./../static/images/remark(18).png" alt="galleryImage11" class="remark_img">
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 8rem 0rem 0rem 0rem;">
+                        <div class="col-4">
+                             <img src="./../static/images/remark(23).png" alt="galleryImage12" class="remark_img">
+                        </div>
+                        <div class="col-4">
+                             <img src="./../static/images/remark(17).png" alt="galleryImage13" class="remark_img">
+                        </div>
+                        <div class="col-4">
+                             <img src="./../static/images/remark(27).png" alt="galleryImage14" class="remark_img">
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 8rem 0rem 0rem 0rem;">
+                        <div class="col-4">
+                             <img src="./../static/images/remark(15).png" alt="galleryImage15" class="remark_img">
+                        </div>
+                        <div class="col-4">
+                             <img src="./../static/images/remark(25).png" alt="galleryImage16" class="remark_img">
+                        </div>
+                        <div class="col-4">
+                             <img src="./../static/images/remark(26).png" alt="galleryImage17" class="remark_img">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="row">
             <section class="try-now">
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <h1 class="heading create">Try Now !</h1>
                     <h2 class="heading dim">It is free after all</h2>
                     <h4 class="heading dim2">Yep, you read it right. It is free. Hop In !</h4>
-                    <router-link to="/signup" class="customButton signUpButton" style="margin: 4rem 0rem 16rem 0rem;">Sign Up</router-link>
+                    <router-link to="/signup" style="color: white;">
+                        <div class="customButton signUpButton" style="margin: 1rem;">
+                            Sign Up
+                        </div>
+                    </router-link>
                 </div>
             </section>
         </div>
         <div id="home-footer">
             Developed with ❤ by <span class="fw-bold" style="margin: 1rem 0rem 1rem 0.6rem;">
-                <a href="https://github.com/Vishvam10" style="color: white; font-size: 2rem;">Vishvam S</a>
+                <a href="https://github.com/Vishvam10" style="color: white; font-size: 2rem;" class="link">Vishvam S</a>
             </span>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -146,6 +220,18 @@
     ion-icon {
         font-size: 4rem;
         color: rgb(128, 128, 128);
+    }
+    .remark_img {
+        height: auto;
+        width: 100%;
+        border-radius: 1rem;
+    }
+    .link {
+        background: linear-gradient(to right, rgb(148, 0, 250), rgb(255, 2, 26));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 0.1s ease-in-out; 
     }
     .doc_link {
         background: linear-gradient(to right, rgb(148, 0, 250), rgb(255, 2, 26));
@@ -172,13 +258,19 @@
         font-size: 2.4rem;
         font-weight: 700;
         margin: 0rem 0rem 2rem 0rem;
+        /* background: linear-gradient(rgb(148, 0, 250), rgb(255, 2, 26));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; */
+        color: black;
+        
     }
     .card_text {
         font-size: 1.6rem;
         color: #8f8f8f;
     }
     .usage_card {
-        height: 34rem;
+        height: 28rem;
     }
     .remark_text {
         font-size: 7rem;
@@ -213,7 +305,6 @@
         align-items: center;
     }
     .remark_section {
-
         padding: 4rem;
     }
     .header-text {
@@ -226,20 +317,7 @@
         font-size: 10rem;
         font-weight: bold;
     }
-    .create {
-        background-image: linear-gradient(90deg, #00e1ff 0%, #001aff 100%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin: 0rem 0rem 1rem 1rem;
-    }
-    .playAndReview {
-        background: linear-gradient(to top, rgb(55, 236, 186), rgb(114, 175, 211));
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin: 0rem 8rem 1rem 0rem;
-    }
+  
     .header-details {
         margin: 4rem 0rem 0rem 0rem;
         font-size: 1.6rem;
@@ -280,7 +358,7 @@
         position: relative;
         top: 12rem;
         width: 50rem;
-        margin: 12rem 10rem 4rem 0rem;
+        margin: 2rem 6rem 20rem 2rem;
     }
     .dim {
         font-size: 2rem;

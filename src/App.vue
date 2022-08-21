@@ -54,6 +54,8 @@ img {
   box-shadow: rgba(75, 77, 80, .4) 0px 8px 24px;
 }
 .btn {
+  background: black !important;
+  color: white !important;
   transition: all 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
 }
 .btn:hover {
