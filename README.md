@@ -1,13 +1,8 @@
 # Remark Website
-
-## Overview :
-
-<br>
-
 - This website is made using `Vue-CLI` and `Bootstrap` 
-- It provides a guide and the flow of the app for first time users *
-- It also has separate admin related pages from where admins can create an account, login, register new websites and view their dashboard
-- The dashboard consists of :
+- It provides a guide and the flow of the app for first time users
+- It also has **separate admin related pages** from where admins can create an account, login, register new websites and view their dashboard
+- The **admin dashboard** consists of :
     - General Settings
     - Password Reset
     - Preferences *
@@ -16,14 +11,7 @@
 
 \* Under Development
 
-<br>
 
-## Todo 
-
-<br>
-
-- [] Proper validation in `login` and `passwordReset` page 
-- [] Show error bubble when any error occurs
 
 <br>
 
@@ -31,33 +19,56 @@
 
 <br>
 
-1. Install the dependencies :
 
-    ```
-    yarn install
-    ```
-
-2. Change the `BASE_API_URL` global variable in `main.js` file :
-
-    ```
-    app.config.globalProperties.BASE_API_URL = "your_server";
-    ```
+# Basic Setup
 
 
-3. Compiles and hot-reloads for development
+Clone the project
+```bash
+  git clone ...
+```
 
-    ```
+Go to the project directory
+```bash
+  cd my-project
+```
+
+Install the required dependencies using either `npm` or `yarn`
+```
+  npm install 
+  OR
+  yarn install
+```
+
+<br>
+
+
+Change the `BASE_API_URL` global variable in `main.js` file : (Without the trailing slash)
+
+```
+    FOR EXAMPLE :
+    app.config.globalProperties.BASE_API_URL = "127.0.0.1:5000";
+```
+
+
+Compiles and hot-reloads for development
+
+```
     yarn serve
-    ```
+```
 
-4. Compiles and minifies for production
+Compiles and minifies for production
 
-    ```
+```
     yarn build
-    ```
+```
 
-5. (Optional) Lints and fixes files
-    ```
-    yarn lint
-    ```
 
+<br>
+
+## Todo 
+
+<br>
+
+- [x] Proper validation in `login` and `passwordReset` page 
+- [x] Show error bubble when any error occurs
